@@ -6,6 +6,6 @@ setup(
     packages=find_packages(),  # Automatically discover and include all packages in your project
 
     install_requires=[
-        # List your dependencies here
+        'requests'
     ],
 )
