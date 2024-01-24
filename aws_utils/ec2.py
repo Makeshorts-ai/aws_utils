@@ -1,13 +1,11 @@
-def get_instance_id(boto3):
-    # Create a Boto3 EC2 client
-    ec2_client = boto3.client('ec2')
+import requests
 
-    # Get the instance ID for the current EC2 instance
+def get_instance_id():
     try:
-        response = ec2_client.describe_instances()
-        instance_id = response['Reservations'][0]['Instances'][0]['InstanceId']
+        response = requests.get("http://169.254.169.254/latest/meta-data/instance-id", timeout=0.1)
+        instance_id = response.text
         return instance_id
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         print(f"Error retrieving instance ID: {e}")
         return None
 
