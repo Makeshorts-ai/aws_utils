@@ -21,8 +21,8 @@ class CloudWatchHandler(logging.StreamHandler):
                     }
                 ]
             )
-        except Exception:
-            print("Credentials not available")
+        except Exception as e:
+            print("Credentials not available", e)
 
 
 class JsonFormatter(logging.Formatter):
