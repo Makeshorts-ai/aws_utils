@@ -58,9 +58,13 @@ def setup_logging(log_group_name, log_stream_name, cloudwatch_logs):
 
     # Create or get the CloudWatch log group and stream
     try:
+        print(f"Creating log group: {log_group_name}")
         cloudwatch_logs.create_log_group(logGroupName=log_group_name)
+
+        print(f"Creating log stream: {log_stream_name}")
         cloudwatch_logs.create_log_stream(logGroupName=log_group_name, logStreamName=log_stream_name)
-    except cloudwatch_logs.exceptions.ResourceAlreadyExistsException:
+    except Exception as e:
+        print(e)
         pass
 
     # Add the CloudWatch handler to the logger
