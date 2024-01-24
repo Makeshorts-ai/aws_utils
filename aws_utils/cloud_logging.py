@@ -61,6 +61,11 @@ def setup_logging(log_group_name, log_stream_name, cloudwatch_logs):
         print(f"Creating log group: {log_group_name}")
         cloudwatch_logs.create_log_group(logGroupName=log_group_name)
 
+    except Exception as e:
+        print(e)
+        pass
+
+    try:
         print(f"Creating log stream: {log_stream_name}")
         cloudwatch_logs.create_log_stream(logGroupName=log_group_name, logStreamName=log_stream_name)
     except Exception as e:
